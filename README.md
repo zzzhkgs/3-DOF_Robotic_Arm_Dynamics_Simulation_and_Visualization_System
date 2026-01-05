@@ -17,25 +17,6 @@
 
 ---
 
-## 📂 文件结构预览
-
-```text
-Project_Root/
-├── MATLAB_Scripts/
-│   ├── derive_robot_dynamics.m       # 动力学推导脚本
-│   ├── robot_plant.m                 # 物理对象模型
-│   ├── Inverse_solution.slx          # Simulink 仿真模型
-│   ├── Single-point_IK.mlx           # 单点轨迹生成
-│   ├── Post-processing_script.mlx    # 数据导出脚本
-│   └── generated/                    # 自动生成的函数 (get_M, get_C, get_G)
-├── Python_Visualization/
-│   ├── Drawing_script.py             # 3D 绘图与动画脚本
-│   └── robot_data.csv                # 仿真导出的数据文件
-└── README.md
-```
-
----
-
 ## 🛠️ 环境依赖
 
 ### MATLAB / Simulink
@@ -73,6 +54,7 @@ Project_Root/
 ### Step 3: Simulink 仿真
 打开并运行模型 `Inverse_solution.slx`。
 * **配置**：确保模型中的 `From Workspace` 模块读取的是上一步生成的 `ts_q` 等变量。
+* **功能**：包含了pid控制器和rbf控制器控制的三轴机械臂的逆运动学仿真和动力学仿真。
 * **运行**：点击 **Run**。Simulink 将调用 `robot_plant.m` 进行物理引擎解算。
 * **结果**：仿真结束后，工作区会生成仿真结果变量 `sim_q_actual` (通常包含在 `out` 对象中)。
 
@@ -85,10 +67,19 @@ Project_Root/
 * **输入**：自动读取目录下的 `robot_data.csv`。
 * **输出**：弹出一个交互式 3D 窗口，显示机械臂运动动画，并自动保存为 GIF 文件（`robot_smooth_trail.gif`）。
 
+### Step 6: Python 误差分析对比
+运行 Python 可视化脚本 `Error_calculation_comparison.py`。
+* **输入**：自动读取目录下的 `robot_data.csv`。
+* **输出**：弹出两个窗口，显示轨迹对比和误差对比，并自动保存为 PNG 文件（`Figure1_Trajectory.png`和`Figure2_ErrorAnalysis.png`）。
+
+### 注意事项: 
+确保MATLAB工作区正确配置。
+
+
 ---
 
 ## 📝 作者与致谢
 
 * **Project created for:** Robotic Course Design
 * **Methodology:** Standard DH parameters & Lagrangian dynamics
-* **Update:** zzzhkgs 2026.1.4 (Doc Optimization)
+* **Update:** zzzhkgs 2026.1.5 (Doc Optimization)
