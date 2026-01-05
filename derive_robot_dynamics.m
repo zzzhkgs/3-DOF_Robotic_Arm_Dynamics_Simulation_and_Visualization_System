@@ -25,7 +25,7 @@ r3 = a3 / 2;
 % 实际工程中应导入CAD计算出的惯性张量
 syms Izz1 Izz2 Izz3 real 
 
-%% 2. D-H 变换矩阵 (根据文档表 2 )
+%% 2. D-H 变换矩阵 
 % D-H 参数顺序: theta, d, a, alpha
 % 变换矩阵函数定义 (标准的后置乘法)
 DH = @(th, d, a, alp) [ ...
@@ -47,8 +47,7 @@ T03 = T02 * T23;
 % 提取旋转矩阵 R 和 位置向量 P
 % 质心位置 (假设质心在局部坐标系的X轴上距离原点 r 处)
 P_c1 = T01 * [0; 0; 0; 1]; % 连杆1质心 (假设在原点)
-P_c2 = T02 * [-a2/2; 0; 0; 1]; % 连杆2质心 (修正：因T12包含了a2平移，需往回找中心)
-% 更正：直接用局部坐标定义质心更直观
+P_c2 = T02 * [-a2/2; 0; 0; 1]; % 连杆2质心 
 % 定义连杆质心在各自局部坐标系下的位置向量
 pc1_local = [0; 0; 0; 1];       
 pc2_local = [-a2/2; 0; 0; 1];   % 连杆2中心
@@ -84,7 +83,7 @@ Jw3 = [z0, z1, z2];
 % 动能 K = 0.5 * m * v' * v + 0.5 * w' * I * w
 dq_vec = [dq1; dq2; dq3];
 
-% 连杆1动能 (假设简单模型)
+% 连杆1动能
 K1 = 0.5 * m1 * (Jv1*dq_vec).' * (Jv1*dq_vec) + 0.5 * (Jw1*dq_vec).' * diag([0,0,Izz1]) * (Jw1*dq_vec);
 % 连杆2动能
 K2 = 0.5 * m2 * (Jv2*dq_vec).' * (Jv2*dq_vec) + 0.5 * (Jw2*dq_vec).' * diag([0,0,Izz2]) * (Jw2*dq_vec);
@@ -133,7 +132,7 @@ C = simplify(C);
 %% 6. 代入数值并生成函数文件
 fprintf('正在生成 MATLAB 函数文件...\n');
 
-% 定义数值参数 (来自文档 )
+% 定义数值参数
 param_values = struct();
 param_values.m1 = 2.0; param_values.m2 = 1.5; param_values.m3 = 1.0;
 param_values.a2 = 0.4; param_values.a3 = 0.3;

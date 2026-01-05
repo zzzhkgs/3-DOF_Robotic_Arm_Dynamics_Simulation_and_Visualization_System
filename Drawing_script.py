@@ -12,7 +12,7 @@ try:
     df = pd.read_csv('robot_data.csv', header=None)
     data = df.values
     t = data[:, 0]
-    q = data[:, 1:4] 
+    q = data[:, 4:7] 
     print(f"成功读取数据，共 {len(t)} 帧")
 except FileNotFoundError:
     print("错误：找不到 robot_data.csv，请先在 MATLAB 中导出！")
@@ -40,7 +40,7 @@ def forward_kinematics(q_now):
     return [T01[:3, 3], T02[:3, 3], T03[:3, 3]] # 返回 p1, p2, p3
 
 # ==========================================
-# 3. 【核心优化】预计算所有末端位置
+# 3.预计算所有末端位置
 # ==========================================
 # 这一步是为了让拖尾（Trail）即使在跳帧播放时也能保持平滑
 print("正在预计算全轨迹坐标...")
@@ -160,7 +160,7 @@ def update(frame_idx):
 # ==========================================
 # 6. 保存
 # ==========================================
-print("正在生成修复版动画...")
+print("正在生成动画...")
 ani = animation.FuncAnimation(fig, update, frames=indices, interval=40, blit=False)
 ani.save('robot_smooth_trail.gif', writer='pillow', fps=25)
 print("完成！")
