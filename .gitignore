@@ -1,4 +1,8 @@
 # MATLAB/Simulink generated files
-slprj/
-*.slxc
-*.autosave
+MATLAB Core/slprj/
+MATLAB Core/*.slxc
+MATLAB Core/*.autosave
+MATLAB R2023b
+Python Visualization/robot_simulation_data.csv
+Python Visualization/robot_smooth_trail.gif
+MATLAB Core/get_*
