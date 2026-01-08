@@ -1,6 +1,5 @@
 # 🤖 3-DOF 机械臂动力学仿真与控制平台 (All-in-One Version)
 
-
 这是一个集成了 **数学建模**、**动力学仿真** 与 **3D 可视化** 的三自由度（3-DOF）机械臂全流程开发项目。
 
 本项目采用了 **"All-in-One"** 的设计理念，通过单个 MATLAB 脚本 (`main.mlx`) 即可自动完成动力学方程推导、轨迹规划、Simulink 闭环控制仿真及数据导出，并配合 Python 实现高质量的 3D 动画与误差分析。
@@ -60,7 +59,7 @@ Python
 现在的操作流程非常简单，分为 MATLAB 计算 和 Python 画图 两大步：
 Step 1: 运行 MATLAB 主程序
 
-直接打开并运行 main.mlx。 脚本将自动按顺序执行以下任务：
+直接打开并运行 main.mlx。脚本将自动按顺序执行以下任务：
 
     环境清理：自动执行 bdclose, clear, clc。
 
@@ -72,8 +71,7 @@ Step 1: 运行 MATLAB 主程序
 
     数据导出：仿真结束后，自动将 PID 与 RBF 的对比数据写入 robot_simulation_data.csv。
 
-    ✅ 成功标志：MATLAB 命令行提示 >> [完成] 数据已导出至: robot_simulation_data.csv。
-
+✅ 成功标志：MATLAB 命令行提示 >> [完成] 数据已导出至: robot_simulation_data.csv。
 Step 2: 运行 Python 可视化
 
 在终端或 IDE 中运行 Python 脚本进行结果展示。
@@ -106,11 +104,17 @@ robot_simulation_data.csv 文件包含以下列，供自定义分析使用：
 
 ⚠️ 常见问题
 
-    仿真报错 "File not found"： 确保 main.mlx 和 Inverse_solution.slx 在同一目录下，且 MATLAB 的“当前文件夹”已指向该目录。
+    仿真报错 "File not found"：
 
-    Python 读取 CSV 乱码： main.mlx 默认使用标准 CSV 格式导出。如果 Python 报错，请检查 pandas 读取时是否需要指定编码（通常默认即可）。
+        确保 main.mlx 和 Inverse_solution.slx 在同一目录下，且 MATLAB 的“当前文件夹”已指向该目录。
 
-    修改机械臂参数： 直接在 main.mlx 的 "第一部分：动力学符号推导" 中修改质量 m 或长度 a，重新运行即可自动更新所有模型参数。
+    Python 读取 CSV 乱码：
+
+        main.mlx 默认使用标准 CSV 格式导出。如果 Python 报错，请检查 pandas 读取时是否需要指定编码（通常默认即可）。
+
+    修改机械臂参数：
+
+        直接在 main.mlx 的 "第一部分：动力学符号推导" 中修改质量 m 或长度 a，重新运行即可自动更新所有模型参数。
 
 📝 作者
 
