@@ -9,13 +9,13 @@ import pandas as pd
 # 1. 读取数据
 # ==========================================
 try:
-    df = pd.read_csv('robot_data.csv', header=None)
+    df = pd.read_csv('robot_simulation_data.csv', header=None)
     data = df.values
     t = data[:, 0]
     q = data[:, 4:7] 
     print(f"成功读取数据，共 {len(t)} 帧")
 except FileNotFoundError:
-    print("错误：找不到 robot_data.csv，请先在 MATLAB 中导出！")
+    print("错误：找不到 robot_simulation_data.csv，请先在 MATLAB 中导出！")
     exit()
 
 # ==========================================
